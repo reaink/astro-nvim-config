@@ -65,6 +65,39 @@ return {
 
         -- copy whole file
         ["<C-c>"] = { "<cmd>%y+<cr>", desc = "Copy file" },
+
+        -- terminal: float / bottom split / right split
+        ["<Leader>tf"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "float" } }) end,
+          desc = "Toggle float terminal",
+        },
+        ["<Leader>th"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "bottom", height = 0.35 } }) end,
+          desc = "Toggle horizontal terminal",
+        },
+        ["<Leader>tv"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "right", width = 0.4 } }) end,
+          desc = "Toggle vertical terminal",
+        },
+        -- zoom current terminal split to fullscreen (toggle)
+        ["<Leader>tz"] = { "<C-w>m", desc = "Zoom/unzoom terminal window" },
+      },
+      t = {
+        -- exit terminal insert mode
+        ["<Esc><Esc>"] = { "<C-\\><C-n>", desc = "Exit terminal mode" },
+        -- toggle the same float terminal from inside it
+        ["<Leader>tf"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "float" } }) end,
+          desc = "Toggle float terminal",
+        },
+        ["<Leader>th"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "bottom", height = 0.35 } }) end,
+          desc = "Toggle horizontal terminal",
+        },
+        ["<Leader>tv"] = {
+          function() Snacks.terminal.toggle(nil, { win = { position = "right", width = 0.4 } }) end,
+          desc = "Toggle vertical terminal",
+        },
       },
       i = {
         ["<C-h>"] = { "<Left>", desc = "Move left" },
