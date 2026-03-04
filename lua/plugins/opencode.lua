@@ -52,7 +52,7 @@ return {
 
     -- <Leader>ac  选择要连接的 opencode 实例（多实例时使用）
     vim.keymap.set("n", "<Leader>ac", function()
-      require("opencode.server").get_all():next(function(servers)
+      require("opencode.cli.server").get_all():next(function(servers)
         require("opencode.ui.select_server").select_server(servers)
       end)
     end, { desc = "Connect to opencode server" })
