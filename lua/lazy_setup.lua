@@ -15,6 +15,9 @@ require("lazy").setup({
   { import = "plugins" },
 } --[[@as LazySpec]], {
   -- Configure any other `lazy.nvim` configuration options here
+  -- Redirect lockfile to a writable path because ~/.config/nvim is a read-only
+  -- Nix store symlink; stdpath("data") (~/.local/share/nvim) is always writable.
+  lockfile = vim.fn.stdpath "data" .. "/lazy-lock.json",
   install = { colorscheme = { "astrotheme", "habamax" } },
   ui = { backdrop = 100 },
   performance = {
