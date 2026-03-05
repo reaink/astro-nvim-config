@@ -13,15 +13,20 @@ return {
       pane_gap = 4,
       sections = {
         -- ── pane 1 顶部：随机宝可梦精灵 ─────────────────────────────────
-        {
-          pane = 1,
-          section = "terminal",
-          cmd = "pokemon-colorscripts -r --no-title",
-          random = 10,
-          indent = 4,
-          height = 16,
-          padding = 1,
-        },
+        -- macOS: pokemon-colorscripts-mac 不支持 --no-title
+        -- Linux: pokemon-colorscripts 支持 --no-title
+        (function()
+          local is_mac = vim.uv.os_uname().sysname == "Darwin"
+          return {
+            pane = 1,
+            section = "terminal",
+            cmd = is_mac and "pokemon-colorscripts -r" or "pokemon-colorscripts -r --no-title",
+            random = 10,
+            indent = 4,
+            height = 16,
+            padding = 1,
+          }
+        end)(),
 
         -- ── pane 1：快捷键 + 启动时间 ────────────────────────────────────
         { section = "keys", gap = 1, padding = 1 },
