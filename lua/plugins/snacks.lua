@@ -13,14 +13,14 @@ return {
       pane_gap = 4,
       sections = {
         -- ── pane 1 顶部：随机宝可梦精灵 ─────────────────────────────────
-        -- macOS: pokemon-colorscripts-mac 不支持 --no-title
-        -- Linux: pokemon-colorscripts 支持 --no-title
+        -- macOS variant has no --no-title flag; strip the first line (name) with tail
+        -- Linux variant supports --no-title natively
         (function()
           local is_mac = vim.uv.os_uname().sysname == "Darwin"
           return {
             pane = 1,
             section = "terminal",
-            cmd = is_mac and "pokemon-colorscripts -r" or "pokemon-colorscripts -r --no-title",
+            cmd = is_mac and "pokemon-colorscripts -r | tail -n +2" or "pokemon-colorscripts -r --no-title",
             random = 10,
             indent = 4,
             height = 16,
