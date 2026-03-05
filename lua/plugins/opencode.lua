@@ -32,6 +32,20 @@ return {
       -- 默认模式: build（允许文件修改）
       default_mode = "build",
 
+      keymap = {
+        editor = {
+          -- quick chat: 用当前行或 visual 选区作为上下文发起快速问答
+          ["<leader>k/"] = { "quick_chat", mode = { "n", "x" } },
+        },
+      },
+
+      -- quick chat 配置
+      quick_chat = {
+        default_model = nil, -- nil = 沿用当前 session 的 model
+        default_agent = "plan", -- plan 模式不修改文件，更安全
+        instructions = nil, -- nil = 使用内置 instructions
+      },
+
       ui = {
         position = "right",
         window_width = 0.40,
